@@ -1,0 +1,31 @@
+id: subdomain-takeover
+
+info:
+  name: Subdomain Takeover Detection
+  author: fang
+  severity: high
+  description: Detects subdomain takeover on cloud platforms
+  remediation: "Remove DNS records pointing to deleted cloud resources. Claim the unused resource or update DNS."
+  tags: takeover,subdomain,dns
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: word
+        words:
+          - "NoSuchBucket"
+          - "The specified bucket does not exist"
+          - "There is no app hosted here"
+          - "404 Not Found"
+          - "NoSuchKey"
+          - "The thing you were looking for is no longer here"
+          - "The page you requested does not exist"
+          - "The site has not been configured"
+          - "This site has been unpublished"
+          - "Repository not found"
+          - "We could not find what you're looking for"
+          - "There's nothing here, yet."
+          - "The resource you are looking for has been removed"
+          - "The specified key does not exist"

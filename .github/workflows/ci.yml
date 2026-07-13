@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+      - run: go vet ./...
+      - run: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0 ./...
+      - run: test -z "$(gofmt -l .)"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+      - run: go test ./... -count=1 -timeout 120s
+      - name: verify every module has tests
+        run: |
+          for d in modules/*/; do
+            name=$(basename "$d")
+            if ! ls "$d"*_test.go >/dev/null 2>&1; then
+              echo "Module $name has no test file"; exit 1
+            fi
+          done
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - working-directory: frontend
+        run: |
+          npm ci
+          npm run typecheck
+          npm run build
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+      - run: go build ./...

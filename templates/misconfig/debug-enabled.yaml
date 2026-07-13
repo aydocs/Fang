@@ -1,0 +1,25 @@
+id: debug-enabled
+
+info:
+  name: Debug Endpoint Exposed
+  author: fang
+  severity: medium
+  description: Debug or diagnostic endpoint exposed to the internet
+  remediation: "Disable debug and diagnostic endpoints in production environments."
+  tags: misconfig,debug,exposed
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/debug"
+      - "{{BaseURL}}/debug/pprof/"
+      - "{{BaseURL}}/actuator"
+      - "{{BaseURL}}/actuator/health"
+    matchers:
+      - type: word
+        words:
+          - "Heap"
+          - "goroutine"
+          - "actuator"
+          - "{\"status\":\"UP\"}"
+        condition: or

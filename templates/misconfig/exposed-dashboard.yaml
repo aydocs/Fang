@@ -1,0 +1,22 @@
+id: exposed-dashboard
+
+info:
+  name: Exposed Admin Dashboard
+  author: fang
+  severity: high
+  description: Administrative or monitoring dashboard exposed without authentication
+  remediation: "Restrict access to administrative dashboards using authentication, VPN, or IP whitelisting."
+  tags: misconfig,dashboard,exposed
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/dashboard"
+      - "{{BaseURL}}/grafana"
+      - "{{BaseURL}}/kibana"
+      - "{{BaseURL}}/prometheus"
+      - "{{BaseURL}}/jenkins"
+    matchers:
+      - type: regex
+        regex:
+          - "(?i)(login|dashboard|grafana|kibana|prometheus|jenkins)"

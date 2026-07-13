@@ -1,0 +1,21 @@
+id: open-s3-bucket
+
+info:
+  name: Open S3 Bucket
+  author: fang
+  severity: high
+  description: Amazon S3 bucket with public listing enabled
+  remediation: "Block public access to S3 buckets. Review and restrict bucket policies."
+  tags: misconfig,s3,aws,cloud
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}?acl"
+      - "{{BaseURL}}?policy"
+    matchers:
+      - type: word
+        words:
+          - "<Contents>"
+          - "<Policy>"
+        condition: or

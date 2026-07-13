@@ -1,0 +1,18 @@
+id: github-pages-takeover
+
+info:
+  name: GitHub Pages Takeover
+  author: fang
+  severity: high
+  description: Detects GitHub Pages subdomain takeover
+  remediation: "Remove the custom domain from your GitHub Pages settings or point DNS to an active account."
+  tags: takeover,github-pages,github
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: word
+        words:
+          - "There isn't a GitHub Pages site here"

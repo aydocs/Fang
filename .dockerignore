@@ -1,0 +1,7 @@
+.git
+.gitignore
+*.md
+plan/
+web/node_modules
+web/src
+.tool*

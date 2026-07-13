@@ -1,0 +1,29 @@
+# Go
+/bin/
+/obj/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build output
+/fang
+/dist/
+/build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node.js (frontend)
+/frontend/node_modules/
+/frontend/dist/
+/frontend/package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db

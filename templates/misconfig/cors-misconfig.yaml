@@ -1,0 +1,21 @@
+id: cors-misconfig
+
+info:
+  name: CORS Misconfiguration
+  author: fang
+  severity: medium
+  description: CORS policy allows arbitrary origins
+  remediation: "Restrict CORS policy to specific trusted origins. Avoid using wildcard (*) origin in production."
+  tags: misconfig,cors,security-headers
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      Origin: "https://evil.com"
+    matchers:
+      - type: word
+        words:
+          - "Access-Control-Allow-Origin: https://evil.com"
+        part: header

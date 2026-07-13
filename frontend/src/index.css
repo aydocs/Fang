@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-fang-900 text-gray-100 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-fang-500 hover:bg-fang-400 text-white;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 hover:bg-red-500 text-white;
+  }
+  .btn-ghost {
+    @apply btn bg-fang-700 hover:bg-fang-600 text-gray-200;
+  }
+  .card {
+    @apply bg-fang-800 rounded-xl border border-fang-600 p-6;
+  }
+  .input {
+    @apply w-full px-3 py-2 bg-fang-900 border border-fang-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-fang-300;
+  }
+  select.input {
+    @apply appearance-none;
+  }
+  .badge {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-critical { @apply badge bg-red-900/50 text-red-300; }
+  .badge-high { @apply badge bg-orange-900/50 text-orange-300; }
+  .badge-medium { @apply badge bg-yellow-900/50 text-yellow-300; }
+  .badge-low { @apply badge bg-blue-900/50 text-blue-300; }
+  .badge-info { @apply badge bg-gray-700/50 text-gray-300; }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #16213e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #1a1a2e; }

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "fang",
+  "outputfilename": "fang",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "http://localhost:5173",
+  "author": {
+    "name": "aydocs",
+    "email": ""
+  },
+  "info": {
+    "companyName": "aydocs",
+    "productName": "Fang",
+    "productVersion": "1.0.0",
+    "copyright": "2024 aydocs",
+    "comments": "Web Application Security Scanner"
+  }
+}
